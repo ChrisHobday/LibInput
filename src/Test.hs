@@ -1,4 +1,5 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
+{-# LANGUAGE CApiFFI #-}
 module Test
   ( fastSin
   -- , c_libinput_device_tablet_pad_get_num_mode_groups
@@ -6,8 +7,6 @@ module Test
       ( StatusSuccess 
       , StatusUnsupported
       , StatusInvalid )
-  -- , c_status_to_str
-  -- , statusToText
   )
 where
 
@@ -26,13 +25,13 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as E
 
 -- math.h FFI Testing -------------------------------------------------------
-foreign import ccall "math.h sin"
+foreign import capi "math.h sin"
   c_sin :: CDouble -> CDouble
 fastSin :: Double -> Double
 fastSin x = realToFrac (c_sin (realToFrac x))
 
 -----------------------------------------------------------------------------
--- libiinput.h FFI Testing --------------------------------------------------
+-- libinput.h FFI Testing ---------------------------------------------------
 
 newtype InputDevice = InputDevice { unID :: Ptr InputDevice }
   deriving
@@ -44,8 +43,10 @@ newtype InputDeviceGroup = InputDeviceGroup ( Ptr InputDeviceGroup )
     ( Eq
     , Show )
 
-foreign import ccall unsafe "libinput.h libinput_device_tablet_pad_get_num_mode_groups"
+foreign import capi unsafe "libinput.h libinput_device_tablet_pad_get_num_mode_groups"
   c_libinput_device_tablet_pad_get_num_mode_groups :: Ptr InputDevice -> IO CInt
+-- tabletPadGetNumModeGroups :: InputDevice -> Int
+-- tabletPadGetNumModeGroups = c_libinput_device_tablet_pad_get_num_mode_groups
 
 data ConfigStatus
     = StatusSuccess

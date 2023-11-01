@@ -37,6 +37,8 @@ ghc-options:
 
 library:
   source-dirs: src
+  include-dirs:
+    - /usr/include
 
 executables:
   LibInput-exe:

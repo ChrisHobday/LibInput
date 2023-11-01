@@ -25,7 +25,6 @@ source-repository head
 
 library
   exposed-modules:
-      System.InputDevice
       Test
   other-modules:
       Paths_LibInput
@@ -34,6 +33,8 @@ library
   hs-source-dirs:
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  include-dirs:
+      /usr/include
   build-depends:
       base >=4.7 && <5
     , bytestring
