@@ -2,7 +2,7 @@
 {-# LANGUAGE CApiFFI #-}
 module Test
   ( fastSin
-  -- , c_libinput_device_tablet_pad_get_num_mode_groups
+  , c_libinput_device_tablet_pad_get_num_mode_groups
   , ConfigStatus
       ( StatusSuccess 
       , StatusUnsupported

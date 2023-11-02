@@ -37,9 +37,10 @@ ghc-options:
 
 library:
   source-dirs: src
-  include-dirs:
-    - /usr/include
-
+  pkgconfig-depends:
+    - libinput
+    - libudev
+    
 executables:
   LibInput-exe:
     main:                Main.hs
