@@ -1,5 +1,6 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 {-# LANGUAGE CApiFFI #-}
+{-# LANGUAGE DeriveGeneric #-}
 module Test
   ( fastSin
   , c_libinput_device_tablet_pad_get_num_mode_groups
@@ -32,6 +33,11 @@ fastSin x = realToFrac (c_sin (realToFrac x))
 
 -----------------------------------------------------------------------------
 -- libinput.h FFI Testing ---------------------------------------------------
+
+data InputInterface = InputInterface
+  { openRestricted :: [Char] -> Int -> Int
+  , closeRestricted :: Int
+  }
 
 newtype InputDevice = InputDevice { unID :: Ptr InputDevice }
   deriving
