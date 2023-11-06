@@ -35,8 +35,8 @@ fastSin x = realToFrac (c_sin (realToFrac x))
 -- libinput.h FFI Testing ---------------------------------------------------
 
 data InputInterface = InputInterface
-  { openRestricted :: [Char] -> Int -> Int
-  , closeRestricted :: Int
+  { openRestricted :: [Char] -> Int -> IO Int
+  , closeRestricted :: IO ()
   }
 
 newtype InputDevice = InputDevice { unID :: Ptr InputDevice }
