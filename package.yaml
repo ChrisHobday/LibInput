@@ -39,7 +39,7 @@ library:
   source-dirs: src
   pkgconfig-depends:
     - libinput
-    - libudev
+  #   - libudev
     
 executables:
   LibInput-exe:
